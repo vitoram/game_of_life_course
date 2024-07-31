@@ -30,7 +30,7 @@ class GameTable extends ConsumerWidget {
                       : 0;
                 }));
                 Widget child = CellWidget(alive: alive);
-                //TODO 5: The choice of wich widget (GestureDetector or not) should be handled here? Or place inside another class is a better pratrice?
+                //TODO 5: The choice of wich widget (GestureDetector or not) should be handled here? Or place inside another class is a better practice?
                 return enableToggle
                     ? GestureDetector(
                         onTap: () => ref

@@ -24,9 +24,11 @@ class GameRulesRow extends ConsumerWidget {
             child: Consumer(
               builder: (context, ref, child) {
                 List<int> list = ref.watch(gameRulesProvider(value));
+                //Define the number of nearby cells to Keep Alive or Create Life (depending on value)
                 return Row(
                   children: [
                     for (int i = 1; i < 9; i++)
+                      //The button that shows what value is selected
                       ElevatedButton(
                         onPressed: () => ref
                             .read(gameRulesProvider(value).notifier)
@@ -36,8 +38,10 @@ class GameRulesRow extends ConsumerWidget {
                           shape: const WidgetStatePropertyAll(CircleBorder()),
                           padding:
                               const WidgetStatePropertyAll(EdgeInsets.all(20)),
+                          //If the number is selected (list contains the value) the button is blue
                           backgroundColor: WidgetStatePropertyAll(
-                              list.contains(i) ? Colors.blue.shade300 : null),
+                            list.contains(i) ? Colors.blue.shade300 : null,
+                          ),
                         ),
                       )
                   ],

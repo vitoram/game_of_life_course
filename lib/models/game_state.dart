@@ -3,6 +3,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+//Using the State Pattern to create the timer logic
+//has 3 states -> Running, Paused, Start
+//has 3 functions -> StartPause -> start and pause the timer
+//                -> Reset -> pause the clock and reset set the state to Start
+//                -> GetIcon -> get the icon of Play or Pause symbol
 sealed class TimerState {
   void startPause(GameTimer game);
   void reset(GameTimer game);
@@ -10,12 +15,19 @@ sealed class TimerState {
 }
 
 class RunningGameState extends TimerState {
+  //This State represents that the game is running
+  //The clock is started when the Class is initiated
+  //The periodic function is passed as parameter
+  //TODO 6: Pass the function as a parameter is a good practice?
   final Timer _timer;
   final Function() tickFunction;
   RunningGameState(this.tickFunction)
-      : _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-          tickFunction();
-        });
+      : _timer = Timer.periodic(
+          const Duration(seconds: 1),
+          (timer) {
+            tickFunction();
+          },
+        );
 
   @override
   IconData get getIcon => Icons.pause;
@@ -34,6 +46,9 @@ class RunningGameState extends TimerState {
 }
 
 class PausedGameState extends TimerState {
+  //This State represents that the game is paused
+  //Has no complex function, only state changes
+
   @override
   IconData get getIcon => Icons.play_arrow;
 
@@ -48,6 +63,8 @@ class PausedGameState extends TimerState {
 }
 
 class StartGameState extends TimerState {
+  //This State represents that the game is paused
+  //Has no complex function, only state changes
   @override
   IconData get getIcon => Icons.play_arrow;
 
@@ -60,6 +77,8 @@ class StartGameState extends TimerState {
 }
 
 class GameTimer {
+  //The context
+  //The tickFunction will be used when the Timer ticks (at Running State)
   Function() tickFunction;
   GameTimer({required this.tickFunction});
 

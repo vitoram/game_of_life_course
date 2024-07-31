@@ -24,14 +24,19 @@ class GameOfLife extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
+        //Text to show the number of generations
         title: const GenerationText(),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          //Defines the number of nearby cells to Keep Alive and Create Life
           for (var value in GameRule.values) GameRulesRow(value),
+          //Defines the size of the row. Can increment and decrement the size
           const TableSizeRow(),
+          //Controls the timer - Start, Pause, Refresh - also creates a random table
           const TimerRow(),
+          //The Grid of cells
           const Expanded(
             child: GameTable(),
           ),

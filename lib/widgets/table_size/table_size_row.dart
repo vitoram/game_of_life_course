@@ -10,12 +10,16 @@ class TableSizeRow extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        //Text to show the table size. Number of rows and columns are always equal
         Consumer(
           builder: (context, ref, child) {
             int size = ref.watch(tableSizeProvider);
             return Text('Size: $size');
           },
         ),
+        //Incremente/Decrement the table size.
+        //It also reset the game -> inside increment and decrement functions of tableSizeProvider
+
         IconButton(
           onPressed: () => ref.read(tableSizeProvider.notifier).increment(),
           icon: const Icon(Icons.add),

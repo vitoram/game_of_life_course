@@ -10,7 +10,7 @@ class TimerStateP extends _$TimerStateP {
   @override
   TimerState build() {
     _game = GameTimer(
-        //TODO 1: Is a good pratice to pass this function here?
+        //TODO 1: Is a good practice to pass this function here?
         tickFunction: () {
       ref.read(generationProvider.notifier).increase();
     });
@@ -24,7 +24,7 @@ class TimerStateP extends _$TimerStateP {
 
   void reset() {
     _game.reset();
-    //TODO 3: Is a good pratice to invalidate the generation provider here?
+    //TODO 3: Is a good practice to invalidate the generation provider here?
     ref.invalidate(generationProvider);
     state = _game.gameState;
   }
